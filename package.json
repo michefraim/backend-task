@@ -1,0 +1,27 @@
+{
+  "name": "backend-task",
+  "version": "1.0.0",
+  "description": "JsonBin like server",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michefraim/backend-task.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michefraim/backend-task/issues"
+  },
+  "homepage": "https://github.com/michefraim/backend-task#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

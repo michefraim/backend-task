@@ -9,9 +9,9 @@ router.use(express.json());
 router.get("/", (request, response) => {
     const listOfObjectsFound = [];
     try {
-        fs.readdirSync('./backend/jsonFiles').forEach(file => {
+        fs.readdirSync('./jsonFiles').forEach(file => {
            const fileContent = fs.readFileSync(
-                `./backend/jsonFiles/${file}`,
+                `./jsonFiles/${file}`,
                 { encoding: 'utf8', flag: 'r' });
                 const fileContentJson = JSON.parse(fileContent);
                 listOfObjectsFound.push(fileContentJson);
@@ -31,7 +31,7 @@ router.get("/:id", (request, response) => {
     const { id } = request.params;
     try {
         const data = fs.readFileSync(
-            `./backend/jsonFiles/${id}.json`,
+            `./jsonFiles/${id}.json`,
             { encoding: 'utf8', flag: 'r' });
             const dataJson = JSON.parse(data);
         response.status(200).send(dataJson);
@@ -45,7 +45,7 @@ router.post("/", (request, response) => {
     const { body } = request;
     try {
         fs.writeFileSync(
-            `./backend/jsonFiles/${uuid()}.json`,
+            `./jsonFiles/${uuid()}.json`,
                 JSON.stringify(body, null, 4)
         );
         response.status(200).json({
@@ -63,7 +63,7 @@ router.post("/", (request, response) => {
 router.put("/:id", (request, response) => {
     const { id } = request.params;
     const { body } = request;
-    const fileExists = fs.existsSync(`./backend/jsonFiles/${id}.json`);
+    const fileExists = fs.existsSync(`./jsonFiles/${id}.json`);
     if (!fileExists) {
         response.status(404).json(
             {
@@ -72,14 +72,14 @@ router.put("/:id", (request, response) => {
             });
         return;
     }
-    fs.writeFileSync(`./backend/jsonFiles/${id}.json`,
+    fs.writeFileSync(`./jsonFiles/${id}.json`,
         JSON.stringify(body, null, 4));
         response.status(200).send(body);
 });
 
 router.delete("/:id", (request, response) => {
     const { id } = request.params;
-    const fileExists = fs.existsSync(`./backend/jsonFiles/${id}.json`);
+    const fileExists = fs.existsSync(`./jsonFiles/${id}.json`);
     if (!fileExists) {
         response.status(401).json(
             {
@@ -88,7 +88,7 @@ router.delete("/:id", (request, response) => {
             });
     return;
         }
-        fs.unlinkSync(`./backend/jsonFiles/${id}.json`);
+        fs.unlinkSync(`./jsonFiles/${id}.json`);
         response.status(200).json({
             "message": "File deleted",
             "success": true
