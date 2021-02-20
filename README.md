@@ -1,6 +1,6 @@
 # About
 
-An JsonBin type service that works locally on files, built by: David Eliyaho and Michael Efraim.
+An JsonBin type service that works locally on files, built by: Daniel Eliyho and Michael Efraim.
 Built using node.js and Express, in addition nodemon and uuid packages used.
 
 ## Instructions
